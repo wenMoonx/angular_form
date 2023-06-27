@@ -80,9 +80,14 @@
 
           <small id="registerForm.passwordHelp" class="form-text text-danger "
             *ngIf="registerForm.controls['password'].errors?.['required']">
+              Password is required
+          </small>
+
+          <small id="registerForm.passwordHelp" class="form-text text-danger "
+            *ngIf="registerForm.controls['password'].errors?.['invalidPassword']">
               Please use strong password
           </small>
-          
+
           <small id="registerForm.passwordHelp" class="form-text text-danger "
             *ngIf="registerForm.controls['password'].errors?.['isInclude']">
               password not includes first name or last name
@@ -106,19 +111,16 @@
 
             <small id="registerForm.passwordHelp" class="form-text text-danger "
               *ngIf="registerForm.controls['confirmPassword'].errors?.['required']">
-                confirmPassword is required
+                Confirm password is required
             </small>
 
             <small id="registerForm.passwordHelp" class="form-text text-danger "
               *ngIf="registerForm.controls['confirmPassword'].errors?.['match']">
-                confirmPassword is not Matched
+                Confirm password is not Matched
             </small>
           </div>
       </div>
-      <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
-      </div>
+      
       <button type="submit" class="btn btn-primary w-100">Submit</button>
     </form>
 </div>

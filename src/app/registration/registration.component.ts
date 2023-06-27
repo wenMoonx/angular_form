@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApiService } from '../services/api.service';
 import {
   AbstractControl,
   FormControl,
@@ -7,6 +8,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { thumbnail } from '../models/thumbnail';
 
 @Component({
   selector: 'app-registration',
@@ -15,8 +17,7 @@ import {
 })
 export class RegistrationComponent {
   registerForm: FormGroup;
-  // registerForm!:any
-  constructor() {
+  constructor(private service: ApiService) {
     this.registerForm = new FormGroup({
       firstName: new FormControl('', Validators.required),
       lastName: new FormControl('', [Validators.required]),
@@ -24,8 +25,7 @@ export class RegistrationComponent {
       email: new FormControl('', [Validators.email, Validators.required]),
       password: new FormControl('', [
         Validators.required,
-        Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]/),
+        this.pattern(),
         this.include(),
       ]),
       confirmPassword: new FormControl('', [Validators.required, this.match()]),
@@ -33,11 +33,27 @@ export class RegistrationComponent {
   }
   registration() {
     this.registerForm.markAllAsTouched();
+
+    const firstName = this.registerForm.controls['firstName'].value;
+    const lastName = this.registerForm.controls['lastName'].value;
+    const email = this.registerForm.controls['email'].value;
+
+    this.service.getThumbnail(lastName).subscribe((value: thumbnail) => {
+      this.service
+        .register({
+          firstName,
+          lastName,
+          email,
+          thumbnailUrl: value.thumbnailUrl,
+        })
+        .subscribe();
+    });
   }
 
   include(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
+      if (value === '') return null;
       const firstName = this.registerForm?.controls['firstName']?.value;
       const lastName = this.registerForm?.controls['lastName']?.value;
       if (firstName === '' || lastName === '') return { isInclude: true };
@@ -48,9 +64,20 @@ export class RegistrationComponent {
     };
   }
 
+  pattern(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      if (value === '') return null;
+      const regex = new RegExp('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$');
+      const valid = regex.test(value);
+      return valid ? null : { invalidPassword: true };
+    };
+  }
+
   match(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       const value = control.value;
+      if (value === '') return null;
       return value !== this.registerForm?.controls['password']?.value
         ? { match: true }
         : null;
