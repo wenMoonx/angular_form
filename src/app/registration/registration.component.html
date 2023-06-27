@@ -1,17 +1,20 @@
-<div class="w-200 mx-auto">
+<div class="w-25 mx-auto card p-4">
     <div class="">
-      <h1 class="text-primary text-center">SignUp</h1>
+      <h1 class="text-primary text-center form-title">SignUp</h1>
     </div>
-    <span>{{registerForm.controls['firstName'].value}} {{registerForm.controls['lastName'].value}}</span>
-    <form class="border p-4" [formGroup]="registerForm" (ngSubmit)="registration()">
-      <div class="form-group">
+    <span class="d-flex justify-content-end header-font">
+      {{registerForm.controls['firstName'].value ? 'Welcome:' : ''}} 
+      {{registerForm.controls['firstName'].value}} 
+      {{registerForm.controls['lastName'].value}}
+    </span>
+    <form [formGroup]="registerForm" (ngSubmit)="registration()">
+      <div class="form-group mt-2">
         <label for="firstName">First Name</label>
-
+        <div class="input-container">
         <input type="name" class="form-control" id="firstName" aria-describedby="firstName" placeholder="Enter first name"
-          formControlName="firstName"
-          name="firstName"
-          [ngClass]=" {'border border-danger ' : registerForm.controls['firstName'].touched && registerForm.controls['firstName'].invalid}"
-        >
+          formControlName="firstName" name="firstName"
+          [ngClass]=" {'border border-danger ' : registerForm.controls['firstName'].touched && registerForm.controls['firstName'].invalid}">
+        </div>
         <div
         *ngIf="registerForm.controls['firstName'].touched
         && registerForm.controls['firstName'].invalid">
@@ -22,13 +25,13 @@
           </small>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group mt-2">
         <label for="lastName">Last Name </label>
-
-        <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name"
-          formControlName="lastName" name="lastName"
-          [ngClass]=" {'border border-danger ' : registerForm.controls['lastName'].touched && registerForm.controls['lastName'].invalid}"
-        >
+        <div class="input-container">
+          <input type="text" class="form-control" id="lastName" aria-describedby="lastName" placeholder="Enter last name"
+            formControlName="lastName" name="lastName"
+            [ngClass]=" {'border border-danger ' : registerForm.controls['lastName'].touched && registerForm.controls['lastName'].invalid}">
+        </div>
         <div
         *ngIf="registerForm.controls['lastName'].touched
         && registerForm.controls['lastName'].invalid">
@@ -40,14 +43,14 @@
 
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group mt-2">
         <label for="Email">Email address</label>
+        <div class="input-container">
+          <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email"
+            formControlName="email" name="email"
+            [ngClass]=" {'border border-danger ' : registerForm.controls['email'].touched && registerForm.controls['email'].invalid}">
+        </div>
 
-        <input type="email" class="form-control" id="email" aria-describedby="email" placeholder="Enter email"
-          formControlName="email"
-          name="email"
-          [ngClass]=" {'border border-danger ' : registerForm.controls['email'].touched && registerForm.controls['email'].invalid}"
-        >
         <div
         *ngIf="registerForm.controls['email'].touched
         && registerForm.controls['email'].invalid">
@@ -64,16 +67,14 @@
 
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group mt-2">
         <label for="Password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Password"
-          [ngClass]=" {'
-          border border-danger ' :
-          registerForm.controls['password'].touched &&
-          registerForm.controls['password'].invalid}"
-          formControlName="password"
-          name="password"
-        >
+        <div class="input-container">
+          <input type="password" class="form-control" id="password" placeholder="Password" [ngClass]=" {'
+            border border-danger ' :
+            registerForm.controls['password'].touched &&
+            registerForm.controls['password'].invalid}" formControlName="password" name="password">
+        </div>
         <div *ngIf="
           registerForm.controls['password'].touched &&
           registerForm.controls['password'].invalid">
@@ -95,16 +96,14 @@
 
         </div>
       </div>
-      <div class="form-group">  
+      <div class="form-group mt-2">  
         <label for="Confirmed Password">Confirmed Password</label>
-        <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmed Password"
-          [ngClass]=" {'
-          border border-danger ' :
-          registerForm.controls['confirmPassword'].touched &&
-          registerForm.controls['confirmPassword'].invalid}"
-          formControlName="confirmPassword"
-          name="confirmPassword"
-          >
+        <div class="input-container">
+          <input type="password" class="form-control" id="confirmPassword" placeholder="Confirmed Password" [ngClass]=" {'
+            border border-danger ' :
+            registerForm.controls['confirmPassword'].touched &&
+            registerForm.controls['confirmPassword'].invalid}" formControlName="confirmPassword" name="confirmPassword">
+        </div>
           <div *ngIf="
             registerForm.controls['confirmPassword'].touched &&
             registerForm.controls['confirmPassword'].invalid">
@@ -121,6 +120,6 @@
           </div>
       </div>
       
-      <button type="submit" class="btn btn-primary w-100" [disabled]="this.registerForm.invalid">Submit</button>
+      <button type="submit" class="btn btn-primary w-100 mt-4" [disabled]="this.registerForm.invalid">Submit</button>
     </form>
 </div>

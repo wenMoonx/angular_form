@@ -1,0 +1,93 @@
+.card {
+  color: white;
+  background: #ffffff0d !important;
+  border: none !important;
+  border-radius: 5px !important;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 5px !important;
+  border: 1px solid transparent;
+  background: linear-gradient(
+      90deg,
+      rgba(112, 0, 255, 0.4) 30%,
+      rgba(112, 0, 255, 0.6) 45%,
+      rgba(47, 23, 133, 0.3) 60%,
+      rgba(47, 23, 133, 0.5) 90%
+    )
+    border-box;
+
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: source-out;
+  mask-composite: exclude;
+}
+
+button {
+  border-radius: 10px;
+  background: linear-gradient(79deg, #482bae 0%, #7000ff 100%);
+  border: none;
+}
+
+label {
+  color: #fff;
+  font-size: 16px;
+  font-family: Poppins;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.input-container {
+  border-radius: 5px;
+  background: rgba(88, 46, 146, 0.3);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.05) inset;
+  padding: 5px;
+}
+
+form {
+  z-index: 50;
+}
+
+input {
+  border-radius: 5px;
+  background: rgba(88, 46, 146, 0.5);
+  caret-color: rgb(99, 0, 198);
+  border: none;
+  color: white;
+}
+
+input::placeholder {
+  color: rgb(204, 198, 198);
+}
+
+input:focus,
+input:active {
+  background: rgba(88, 46, 146, 0.5);
+  color: white;
+}
+
+.form-title {
+  background: linear-gradient(90deg, #7000ff 0%, #5524ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-weight: 900;
+  font-size: 38px;
+  line-height: 60px;
+}
+
+.header-font {
+  color: #c1c1d1;
+  font-size: 23px;
+  font-family: Poppins;
+  font-weight: 700;
+  line-height: 27px;
+  letter-spacing: -0.8px;
+}
