@@ -5,6 +5,7 @@ import { ApiService } from '../services/api.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import {
   dispatchFakeEvent,
+  findEl,
   queryByCss,
   setFieldValue,
 } from '../spec-helpers/element.spec-helpers';
@@ -35,10 +36,6 @@ describe('RegistrationComponent', () => {
     de = queryByCss(fixture, 'form');
     el = de.nativeElement;
   });
-
-  const markFieldAsTouched = (element: DebugElement) => {
-    dispatchFakeEvent(element.nativeElement, 'blur');
-  };
 
   it('form invalid when empty', () => {
     setFieldValue(fixture, 'firstName', '');
@@ -117,6 +114,8 @@ describe('RegistrationComponent', () => {
   });
 
   it('should call onSubmit method', () => {
+    findEl(fixture, 'form').triggerEventHandler('submit', {});
+    fixture.detectChanges();
     el = queryByCss(fixture, 'button').nativeElement;
     el.click();
     expect(component.registerForm).toHaveBeenCalledTimes(1);
