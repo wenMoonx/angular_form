@@ -4,8 +4,7 @@
     </div>
     <span class="d-flex justify-content-end header-font">
       {{registerForm.controls['firstName'].value ? 'Welcome:' : ''}} 
-      {{registerForm.controls['firstName'].value}} 
-      {{registerForm.controls['lastName'].value}}
+      {{registerForm.controls['firstName'].value}}
     </span>
     <form [formGroup]="registerForm" (ngSubmit)="registration()">
       <div class="form-group mt-2">
