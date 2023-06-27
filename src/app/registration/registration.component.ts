@@ -8,7 +8,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
-import { thumbnail } from '../models/thumbnail';
+import { thumbnail } from '../types/thumbnail';
 import { LoaderService } from '../services/loader.service';
 import { ToastrService } from '../services/toastr.service';
 
