@@ -8,10 +8,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { RegistrationComponent } from './registration/registration.component';
+import { NavbarComponent } from './navbar/navbar.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, RegistrationComponent, SpinnerComponent],
+  declarations: [
+    AppComponent,
+    RegistrationComponent,
+    SpinnerComponent,
+    NavbarComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

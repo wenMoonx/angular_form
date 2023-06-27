@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body {
+  background: radial-gradient(
+    ellipse at center,
+    #3a2588 0%,
+    #22024d 0%,
+    #000000 100%
+  );
+  height: 100%;
+}
