@@ -6,7 +6,7 @@
       {{registerForm.controls['firstName'].value ? 'Welcome:' : ''}} 
       {{registerForm.controls['firstName'].value}}
     </span>
-    <form [formGroup]="registerForm" (ngSubmit)="registration()">
+    <form [formGroup]="registerForm" (ngSubmit)="registration()" class="form">
       <div class="form-group mt-2">
         <label for="firstName">First Name</label>
         <div class="input-container">
